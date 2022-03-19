@@ -2,15 +2,15 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     height: 3.2rem;
-    background: #3F444E;
-    border: 1px solid #fff;
+    background: #fff;
+    border: 1px solid #a8a8b3;
     border-radius: 5px;
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
     
     input {
-      color: #fff;
+      color: #29292e;
       font-size: 1.2rem;
       font-weight: 400;
       background: transparent;

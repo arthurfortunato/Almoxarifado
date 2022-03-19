@@ -1,18 +1,19 @@
 import styled from 'styled-components';
 
-export const ButtonContainer = styled.button `
-  background: #3182CE;
-  padding: 16px 28px;
-  margin-right: 20px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  
-  font: 600 1.2rem "Nunito", sans-serif;
+export const ButtonContainerStyled = styled.button`
+  background: #901b41;
+  border-radius: 8px;
+  width: 100%;
+  height: 60px;
+
   color: #fff;
+  border: none;
+  
+  font: bold 16px "Nunito", sans-serif;
+  cursor: pointer;
   transition: 0.4s;
 
   &:hover {
-    background: #2C5282;
+    filter: brightness(1.3);
   }
 `

@@ -1,11 +1,11 @@
 import { ButtonHTMLAttributes } from 'react';
 
-import { ButtonContainer } from './styles';
+import { ButtonContainerStyled } from './styles';
 
 export const Button = (props: ButtonHTMLAttributes<HTMLButtonElement>) => {
     return (
-        <ButtonContainer {...props} >
+        <ButtonContainerStyled {...props} >
             {props.children}
-        </ButtonContainer>
+        </ButtonContainerStyled>
     );
 };
