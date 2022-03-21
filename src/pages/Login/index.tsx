@@ -4,13 +4,38 @@ import {
   ContainerStyled,
   BodyContainerStyled,
   LoginStyled,
-  AsideBodyLogo,
 } from "./styles";
 
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { UserSignIn } = useAuth();
+  const navigate = useNavigate();
+
+  const handleToSignIn = async () => {
+    try {
+      const data = {
+        email,
+        password
+      }
+      const response = await UserSignIn(data);
+
+      if (response.id) {
+        navigate('/products');
+        return;
+      }
+    } catch (error) {
+     alert("Usuário ou Senha inválidos")
+    }
+  }
+
   return (
     <ContainerStyled>
       <AsideContainer>
@@ -28,11 +53,21 @@ export const Login = () => {
           <form action="">
             <h2>Por favor insira seus dados para prosseguir</h2>
             <label>CPF/CNPJ (Somente Números)</label>
-            <Input type="text" placeholder="Insira o seu CPF ou CNPJ..." />
+            <Input
+              type="text"
+              placeholder="Insira o seu e-mail..."
+              value={email}
+              onChange={event => setEmail(event.target.value)}
+            />
             <label>Senha</label>
-            <Input type="password" placeholder="•••••••••••" />
+            <Input 
+              type="password" 
+              placeholder="•••••••••••"
+              value={password}
+              onChange={event => setPassword(event.target.value)} 
+            />
 
-            <Button>ENTRAR</Button>
+            <Button type="button" onClick={handleToSignIn}>ENTRAR</Button>
           </form>
         </LoginStyled>
       </BodyContainerStyled>

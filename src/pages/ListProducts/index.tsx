@@ -1,17 +1,14 @@
-import {
-  Container,
-  Header,
-  BodyContainer,
-  Table
-} from './styles';
+import { Container, Header, BodyContainer, Table } from "./styles";
 
-import { Button } from '../../components/Button';
-import { FaPencilAlt } from 'react-icons/fa';
-import { BsFillTrashFill } from 'react-icons/bs';
+import { Button } from "../../components/Button";
+import { FaPencilAlt } from "react-icons/fa";
+import { BsFillTrashFill } from "react-icons/bs";
 
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+
+import { useAuth } from "../../hooks/useAuth";
 
 interface IProduct {
   id: string;
@@ -22,35 +19,43 @@ interface IProduct {
 }
 
 export const ProductsList = () => {
-  const [productsList, setProductsList] = useState<IProduct[]>([])
+  const [productsList, setProductsList] = useState<IProduct[]>([]);
+
+  const { user, getCurrentUser } = useAuth();
 
   function getUpdateList(product: IProduct, add = true) {
-    const list = productsList.filter(e => e.id !== product.id)
+    const list = productsList.filter((e) => e.id !== product.id);
     if (add) list.unshift(product);
     return list;
   }
 
   async function handleDeleteProduct(product: IProduct) {
-   await api.delete(`product/delete/${product.id}`).then(response => {
-     const list = getUpdateList(product, false)
-     setProductsList(list)
-   })
+    await api.delete(`product/delete/${product.id}`).then((response) => {
+      const list = getUpdateList(product, false);
+      setProductsList(list);
+    });
   }
 
   useEffect(() => {
-    api.get<IProduct[]>('/product/products').then(response => {
-      setProductsList(response.data)
-    })
+    api.get<IProduct[]>("/product/products").then((response) => {
+      setProductsList(response.data);
+    });
   }, []);
+
+  useEffect(() => {
+    getCurrentUser();
+  }, [getCurrentUser]);
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <Container>
       <Header>
         <h1>Produtos cadastrados em seu estoque</h1>
         <Button>
-          <Link to="/">
-            Adicionar novos produtos
-          </Link>
+          <Link to="/">Adicionar novos produtos</Link>
         </Button>
       </Header>
 
@@ -68,7 +73,7 @@ export const ProductsList = () => {
           </thead>
 
           <tbody>
-            {productsList.map(product => {
+            {productsList.map((product) => {
               return (
                 <tr key={product.id}>
                   <td>{product.name}</td>
@@ -78,21 +83,25 @@ export const ProductsList = () => {
                   <td>
                     <button className="edit">
                       <Link to={`/updated/${product.id}`}>
-                      <FaPencilAlt size={"15px"} />
+                        <FaPencilAlt size={"15px"} />
                       </Link>
                     </button>
                   </td>
                   <td>
-                    <button type="submit" onClick={() => handleDeleteProduct(product)} className="delete">
-                      <BsFillTrashFill size={"15px"} color={"#fff"}/>
+                    <button
+                      type="submit"
+                      onClick={() => handleDeleteProduct(product)}
+                      className="delete"
+                    >
+                      <BsFillTrashFill size={"15px"} color={"#fff"} />
                     </button>
                   </td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </Table>
       </BodyContainer>
     </Container>
-  )
-}
+  );
+};
