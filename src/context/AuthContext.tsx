@@ -37,7 +37,6 @@ const AuthProvider: React.FC = ({ children }) => {
     return getCurrentUser();
   };
 
-  //salvar usuário
   const getCurrentUser = async () => {
     const { data } = await me();
     setUser(data);

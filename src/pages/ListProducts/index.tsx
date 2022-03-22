@@ -1,6 +1,5 @@
 import { Container, Header, BodyContainer, Table } from "./styles";
 
-import { Button } from "../../components/Button";
 import { FaPencilAlt } from "react-icons/fa";
 import { BsFillTrashFill } from "react-icons/bs";
 
@@ -53,10 +52,7 @@ export const ProductsList = () => {
   return (
     <Container>
       <Header>
-        <h1>Produtos cadastrados em seu estoque</h1>
-        <Button>
-          <Link to="/">Adicionar novos produtos</Link>
-        </Button>
+        <h1>Produtos cadastrados!</h1>
       </Header>
 
       <BodyContainer>
@@ -81,11 +77,11 @@ export const ProductsList = () => {
                   <td>{product.amount}</td>
                   <td>{product.sector}</td>
                   <td>
-                    <button className="edit">
-                      <Link to={`/updated/${product.id}`}>
+                    <Link to={`/updated/${product.id}`}>
+                      <button className="edit">
                         <FaPencilAlt size={"15px"} />
-                      </Link>
-                    </button>
+                      </button>
+                    </Link>
                   </td>
                   <td>
                     <button

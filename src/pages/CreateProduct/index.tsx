@@ -45,7 +45,7 @@ export const Products = () => {
       setName("");
       setCode("");
       setSector("");
-      setSector("");
+      setDescription("");
       setAmount("");
       toast.success("Produto cadastrado!");
     } catch (error) {
@@ -53,13 +53,18 @@ export const Products = () => {
     }
   };
 
+  function handleToCancel() {
+    setName("");
+    setCode("");
+    setSector("");
+    setDescription("");
+    setAmount("");
+  }
+
   return (
     <Container>
       <Header>
-        <h1>Adicione um novo produto a seu estoque</h1>
-        <Button className="registeredProducts">
-          <Link to="/products">Ver produtos cadastrados</Link>
-        </Button>
+        <h1>Adicione um novo produto!</h1>
       </Header>
 
       <BodyContainer>
@@ -75,6 +80,7 @@ export const Products = () => {
               setName(event.target.value);
             }}
           />
+
           <Label>
             Código <p>*</p>
           </Label>
@@ -86,9 +92,7 @@ export const Products = () => {
               setCode(event.target.value);
             }}
           />
-        </InputContainer>
 
-        <InputContainer>
           <Label>
             Setor<p>*</p>
           </Label>
@@ -104,12 +108,13 @@ export const Products = () => {
           </Label>
           <Input
             placeholder="Insira a quantidade do produto..."
-            type="text"
+            type="number"
             value={amount}
             onChange={(event) => {
               setAmount(event.target.value);
             }}
           />
+
           <Label>
             Descrição<p>*</p>
           </Label>
@@ -122,12 +127,14 @@ export const Products = () => {
             }}
           />
         </InputContainer>
+        <Buttons>
+          <Button onClick={saveProduct}>Cadastrar</Button>
+          <Toaster position="top-center" reverseOrder={false} />
+          <Button onClick={handleToCancel} className="cancel">
+            Cancelar
+          </Button>
+        </Buttons>
       </BodyContainer>
-      <Buttons>
-        <Button onClick={saveProduct}>Cadastrar</Button>
-        <Toaster position="top-center" reverseOrder={false} />
-        <Button className="cancel">Cancelar</Button>
-      </Buttons>
     </Container>
   );
 };
