@@ -1,4 +1,11 @@
-import { Nav, NavIcon, NavIconBars, SidebarNav, SidebarWrap, NavIconLogout } from "./styles";
+import {
+  Nav,
+  NavIcon,
+  NavIconBars,
+  SidebarNav,
+  SidebarWrap,
+  NavIconLogout,
+} from "./styles";
 import { IconContext } from "react-icons/lib";
 import * as FaIcons from "react-icons/fa";
 import * as BiIcons from "react-icons/bi";
@@ -10,7 +17,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 
 export const Sidebar = () => {
-  const [sidebar, setSidebar] = useState(false);
+  const [sidebar, setSidebar] = useState(true);
+
   const navigate = useNavigate();
   const { Logout } = useAuth();
 
@@ -41,7 +49,7 @@ export const Sidebar = () => {
         </SidebarWrap>
         <SidebarWrap>
           <NavIconLogout onClick={handleLogout}>
-              <BiIcons.BiLogOut onClick={handleSidebarOpen} />
+            <BiIcons.BiLogOut onClick={handleSidebarOpen} />
           </NavIconLogout>
         </SidebarWrap>
       </SidebarNav>

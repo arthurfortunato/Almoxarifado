@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 export const ContainerStyled = styled.main`
   display: flex;
-`
-export const AsideContainer = styled.main`
+  `
+  export const AsideContainer = styled.main`
+  z-index: 100;
   width: 100%;
   height: 100vh;
   display: grid;
@@ -83,6 +84,8 @@ export const BodyContainerStyled = styled.main`
   height: 100vh;
   display: grid;
   grid-template-rows: 1fr 100px;
+  background: #fff;
+  z-index: 100;
 `
 
 export const LoginStyled = styled.div`

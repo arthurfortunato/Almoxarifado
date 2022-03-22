@@ -52,7 +52,7 @@ export const Login = () => {
         <LoginStyled id="login">
           <form action="">
             <h2>Por favor insira seus dados para prosseguir</h2>
-            <label>CPF/CNPJ (Somente Números)</label>
+            <label>E-mail</label>
             <Input
               type="text"
               placeholder="Insira o seu e-mail..."

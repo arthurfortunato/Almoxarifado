@@ -13,17 +13,18 @@ import { Input } from "../../components/Input";
 import toast, { Toaster } from "react-hot-toast";
 
 import { api } from "../../services/api";
-import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Products = () => {
+  const { user, getCurrentUser } = useAuth();
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const [sector, setSector] = useState("");
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
-
-  const { user, getCurrentUser } = useAuth();
+  const navigate = useNavigate();
 
   const getProducts = async (
     name: string,
@@ -67,7 +68,11 @@ export const Products = () => {
     getCurrentUser();
   }, [getCurrentUser]);
 
-  if (!user) {
+  /*   useEffect(() => {
+    user?.id ? getCurrentUser() : navigate("/")
+  },[]) */
+
+  if (!user?.id) {
     return null;
   }
 

@@ -15,6 +15,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 import { api } from "../../services/api";
 import { useEffect, useState } from "react";
+import { useAuth } from "../../hooks/useAuth";
 
 interface IProduct {
   id: string;
@@ -25,6 +26,7 @@ interface IProduct {
 }
 
 const EditProducts = (product: Partial<IProduct>) => {
+  const { user, getCurrentUser } = useAuth();
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const [sector, setSector] = useState("");
@@ -71,6 +73,18 @@ const EditProducts = (product: Partial<IProduct>) => {
 
   async function handleCancel() {
     navigate("/updatedproducts");
+  }
+
+  useEffect(() => {
+    getCurrentUser();
+  }, [getCurrentUser]);
+
+  /*   useEffect(() => {
+    user?.id ? getCurrentUser() : navigate("/")
+  },[]) */
+
+  if (!user?.id) {
+    return null;
   }
 
   return (

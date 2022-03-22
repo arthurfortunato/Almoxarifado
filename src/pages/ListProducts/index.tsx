@@ -6,7 +6,6 @@ import { BsFillTrashFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { Link } from "react-router-dom";
-
 import { useAuth } from "../../hooks/useAuth";
 
 interface IProduct {
@@ -18,9 +17,8 @@ interface IProduct {
 }
 
 export const ProductsList = () => {
-  const [productsList, setProductsList] = useState<IProduct[]>([]);
-
   const { user, getCurrentUser } = useAuth();
+  const [productsList, setProductsList] = useState<IProduct[]>([]);
 
   function getUpdateList(product: IProduct, add = true) {
     const list = productsList.filter((e) => e.id !== product.id);
@@ -45,7 +43,11 @@ export const ProductsList = () => {
     getCurrentUser();
   }, [getCurrentUser]);
 
-  if (!user) {
+  /*   useEffect(() => {
+    user?.id ? getCurrentUser() : navigate("/")
+  },[]) */
+
+  if (!user?.id) {
     return null;
   }
 

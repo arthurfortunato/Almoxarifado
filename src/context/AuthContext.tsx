@@ -46,9 +46,9 @@ const AuthProvider: React.FC = ({ children }) => {
   };
 
   function Logout() {
-    setUser(null);
-    localStorage.removeItem("@FAPERJ:Token");
-    localStorage.removeItem("@FAPERJ:User");
+    setUser(null)
+    localStorage.removeItem("@FAPERJ:Token")
+    localStorage.removeItem("@FAPERJ:User")
   }
 
   return (
