@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { Products } from "../pages/CreateProduct";
 import { ProductsList } from "../pages/ListProducts";
-import EditProducts  from "../pages/EditProducts";
+import EditProducts from "../pages/EditProducts";
 import { Login } from "../pages/Login";
 import { Sidebar } from "../components/Sidebar/Sidebar";
 

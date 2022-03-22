@@ -8,15 +8,16 @@ interface IUserDto {
 }
 
 interface IContextData {
-  user: IUserDto;
+  user: IUserDto | null;
   UserSignIn: (userData: ISignInData) => Promise<IUserDto>;
   getCurrentUser: () => Promise<IUserDto>;
+  Logout: () => void;
 }
 
 const AuthContext = createContext<IContextData>({} as IContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<IUserDto>(() => {
+  const [user, setUser] = useState<IUserDto | null>(() => {
     const user = localStorage.getItem("@FAPERJ:User");
 
     if (user) {
@@ -44,8 +45,14 @@ const AuthProvider: React.FC = ({ children }) => {
     return data as IUserDto;
   };
 
+  function Logout() {
+    setUser(null);
+    localStorage.removeItem("@FAPERJ:Token");
+    localStorage.removeItem("@FAPERJ:User");
+  }
+
   return (
-    <AuthContext.Provider value={{ user, UserSignIn, getCurrentUser }}>
+    <AuthContext.Provider value={{ user, UserSignIn, getCurrentUser, Logout }}>
       {children}
     </AuthContext.Provider>
   );

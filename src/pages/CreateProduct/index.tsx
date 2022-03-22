@@ -13,8 +13,8 @@ import { Input } from "../../components/Input";
 import toast, { Toaster } from "react-hot-toast";
 
 import { api } from "../../services/api";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Products = () => {
   const [name, setName] = useState("");
@@ -22,6 +22,8 @@ export const Products = () => {
   const [sector, setSector] = useState("");
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
+
+  const { user, getCurrentUser } = useAuth();
 
   const getProducts = async (
     name: string,
@@ -59,6 +61,14 @@ export const Products = () => {
     setSector("");
     setDescription("");
     setAmount("");
+  }
+
+  useEffect(() => {
+    getCurrentUser();
+  }, [getCurrentUser]);
+
+  if (!user) {
+    return null;
   }
 
   return (

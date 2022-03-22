@@ -18,17 +18,30 @@ export const NavIcon = styled(Link)`
   font-size: 2rem;
   height: 80px;
 `;
+export const NavIconLogout = styled.button`
+  width: 85%;
+  height: 80px;
+  background: #901b41;
+  font-size: 2.4rem;
+  border: 0;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
 
 export const NavIconBars = styled(NavIcon)`
   margin-left: 2rem;
 `;
 
 export const SidebarNav = styled.nav<{ sidebar: boolean }>`
-  background: #901B41;
+  background: #901b41;
   width: 250px;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
@@ -42,6 +55,7 @@ export const SidebarNav = styled.nav<{ sidebar: boolean }>`
 
 export const SidebarWrap = styled.div`
   width: 100%;
+
 `;
 
 /* SubMenu================================================================ */
