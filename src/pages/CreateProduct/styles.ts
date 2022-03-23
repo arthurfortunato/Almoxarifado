@@ -19,6 +19,10 @@ export const Header = styled.header`
       font-size: 1.5rem;
     }
   }
+
+  @media (max-width: 740px) {
+    padding: 100px 0 0 0;
+  }
 `;
 
 export const BodyContainer = styled.main`
@@ -34,7 +38,8 @@ export const InputContainer = styled.main`
   width: 40%;
 
   @media (max-width: 740px) {
-    width: 95%;
+    align-self: center;
+    width: 90%;
     margin: 10px;
   }
 `;
@@ -61,7 +66,7 @@ export const Buttons = styled.div`
   margin: 40px;
 
   button {
-    height: 100px;
+    height: 90px;
     font-size: 1.3rem;
   }
 
@@ -75,9 +80,14 @@ export const Buttons = styled.div`
   }
 
   @media (max-width: 740px) {
+    transition: 1.8s all;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    padding-left: 10px;
+    width: 90%;
+    margin: 0;
+    button {
+      height: 60px;
+    }
   }
 `;
