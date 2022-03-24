@@ -26,7 +26,24 @@ interface IProduct {
 }
 
 const EditProducts = (product: Partial<IProduct>) => {
-  const { user, getCurrentUser } = useAuth();
+  const { user } = useAuth();
+
+  const [currentName, setCurrentName] = useState("");
+  const [currentCode, setCurrentCode] = useState("");
+  const [currentSector, setCurrentSector] = useState("");
+  const [currentAmount, setCurrentAmount] = useState("");
+
+  api
+    .get(`product/productsId/${localStorage.getItem("idCode")}`)
+    .then((response) => {
+      setCurrentName(response.data.name);
+      setCurrentCode(response.data.code);
+      setCurrentSector(response.data.sector);
+      setCurrentAmount(response.data.amount);
+    });
+
+    console.log();
+  
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const [sector, setSector] = useState("");
@@ -75,14 +92,6 @@ const EditProducts = (product: Partial<IProduct>) => {
     navigate("/updatedproducts");
   }
 
-  useEffect(() => {
-    getCurrentUser();
-  }, [getCurrentUser]);
-
-  /*   useEffect(() => {
-    user?.id ? getCurrentUser() : navigate("/")
-  },[]) */
-
   if (!user?.id) {
     return null;
   }
@@ -98,7 +107,9 @@ const EditProducts = (product: Partial<IProduct>) => {
             Digite o nome do produto <p>*</p>
           </Label>
           <Input
-            value={product.name}
+            placeholder={currentName}
+            type="text"
+            value={name}
             onChange={(event) => {
               setName(event.target.value);
             }}
@@ -107,6 +118,7 @@ const EditProducts = (product: Partial<IProduct>) => {
             Código <p>*</p>
           </Label>
           <Input
+            placeholder={currentCode}
             value={product.code}
             onChange={(event) => {
               setCode(event.target.value);
@@ -116,6 +128,7 @@ const EditProducts = (product: Partial<IProduct>) => {
             Setor<p>*</p>
           </Label>
           <Input
+            placeholder={currentSector}
             value={product.sector}
             onChange={(event) => {
               setSector(event.target.value);
@@ -125,6 +138,7 @@ const EditProducts = (product: Partial<IProduct>) => {
             Quantidade<p>*</p>
           </Label>
           <Input
+            placeholder={currentAmount}
             value={product.amount}
             onChange={(event) => {
               setAmount(event.target.value);

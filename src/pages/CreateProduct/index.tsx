@@ -15,7 +15,6 @@ import toast, { Toaster } from "react-hot-toast";
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export const Products = () => {
   const { user, getCurrentUser } = useAuth();
@@ -24,7 +23,6 @@ export const Products = () => {
   const [sector, setSector] = useState("");
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
-  const navigate = useNavigate();
 
   const getProducts = async (
     name: string,
@@ -67,10 +65,6 @@ export const Products = () => {
   useEffect(() => {
     getCurrentUser();
   }, [getCurrentUser]);
-
-  /*   useEffect(() => {
-    user?.id ? getCurrentUser() : navigate("/")
-  },[]) */
 
   if (!user?.id) {
     return null;

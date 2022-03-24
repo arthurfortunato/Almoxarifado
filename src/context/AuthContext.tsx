@@ -53,7 +53,7 @@ const AuthProvider: React.FC = ({ children }) => {
       window.location.reload();
       localStorage.removeItem("@FAPERJ:Token")
       localStorage.removeItem("@FAPERJ:User")
-    }, 2000);
+    }, 1000);
   }
 
   return (

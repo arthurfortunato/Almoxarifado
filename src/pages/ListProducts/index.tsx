@@ -43,10 +43,6 @@ export const ProductsList = () => {
     getCurrentUser();
   }, [getCurrentUser]);
 
-  /*   useEffect(() => {
-    user?.id ? getCurrentUser() : navigate("/")
-  },[]) */
-
   if (!user?.id) {
     return null;
   }
