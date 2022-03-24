@@ -14,8 +14,8 @@ export const Router = () => {
       {user?.id ? <Sidebar /> : ""}
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/updatedproducts" element={<ProductsList />} />
+        <Route path="/product" element={<Products />} />
+        <Route path="/updatedproduct" element={<ProductsList />} />
         <Route path="/updated/:id" element={<EditProducts />} />
       </Routes>
     </BrowserRouter>

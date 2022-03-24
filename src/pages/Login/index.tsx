@@ -28,7 +28,7 @@ export const Login = () => {
       const response = await UserSignIn(data);
 
       if (response.email) {
-        navigate('/products');
+        navigate('/product');
         return;
       }
     } catch (error) {

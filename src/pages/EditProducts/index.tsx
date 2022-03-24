@@ -34,7 +34,7 @@ const EditProducts = (product: Partial<IProduct>) => {
   const [currentAmount, setCurrentAmount] = useState("");
 
   api
-    .get(`product/productsId/${localStorage.getItem("idCode")}`)
+    .get(`product/productId/${localStorage.getItem("idCode")}`)
     .then((response) => {
       setCurrentName(response.data.name);
       setCurrentCode(response.data.code);
@@ -42,8 +42,8 @@ const EditProducts = (product: Partial<IProduct>) => {
       setCurrentAmount(response.data.amount);
     });
 
-    console.log();
-  
+  console.log();
+
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const [sector, setSector] = useState("");
@@ -68,7 +68,7 @@ const EditProducts = (product: Partial<IProduct>) => {
   const saveProduct = async () => {
     try {
       await getProducts(name, code, sector, amount).then(() => {
-        navigate("/products");
+        navigate("/product");
       });
     } catch (error) {
       toast.error("Preencha todas as informações");
@@ -89,7 +89,7 @@ const EditProducts = (product: Partial<IProduct>) => {
   }, []);
 
   async function handleCancel() {
-    navigate("/updatedproducts");
+    navigate("/updatedproduct");
   }
 
   if (!user?.id) {
@@ -138,6 +138,7 @@ const EditProducts = (product: Partial<IProduct>) => {
             Quantidade<p>*</p>
           </Label>
           <Input
+            type="number"
             placeholder={currentAmount}
             value={product.amount}
             onChange={(event) => {

@@ -34,7 +34,7 @@ export const ProductsList = () => {
   }
 
   useEffect(() => {
-    api.get<IProduct[]>("/product/products").then((response) => {
+    api.get<IProduct[]>("/product/product").then((response) => {
       setProductsList(response.data);
     });
   }, []);

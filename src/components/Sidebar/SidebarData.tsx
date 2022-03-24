@@ -4,12 +4,12 @@ import * as GiIcons from "react-icons/gi";
 export const SidebarData = [
   {
     title: "Home",
-    path: "/products",
+    path: "/product",
     icon: <AiIcons.AiFillHome />,
   },
   {
     title: "Produtos Cadastrados",
-    path: "/updatedproducts",
+    path: "/updatedproduct",
     icon: <GiIcons.GiLogicGateNxor />,
   },
 ];
