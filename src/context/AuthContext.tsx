@@ -1,5 +1,11 @@
 import { createContext, useState } from "react";
-import { ISignInData, me, signIn } from "../services/resources/user";
+import {
+  ISignInData,
+  ISignUpData,
+  me,
+  signIn,
+  signUp,
+} from "../services/resources/user";
 
 interface IUserDto {
   id: string;
@@ -10,6 +16,7 @@ interface IUserDto {
 interface IContextData {
   user: IUserDto | null;
   UserSignIn: (userData: ISignInData) => Promise<IUserDto>;
+  UserSignUp: (userData: ISignUpData) => Promise<IUserDto>;
   getCurrentUser: () => Promise<IUserDto>;
   Logout: () => void;
 }
@@ -38,6 +45,13 @@ const AuthProvider: React.FC = ({ children }) => {
     return getCurrentUser();
   };
 
+  const UserSignUp = async (userData: ISignUpData) => {
+    const { data } = await signUp(userData);
+    localStorage.setItem("@InterDev:Token", data.accessToken);
+    return getCurrentUser();
+  };
+
+
   const getCurrentUser = async () => {
     const { data } = await me();
     setUser(data);
@@ -46,18 +60,18 @@ const AuthProvider: React.FC = ({ children }) => {
   };
 
   function Logout() {
-    setUser(null)
-    localStorage.removeItem("@FAPERJ:Token")
-    localStorage.removeItem("@FAPERJ:User")
+    setUser(null);
+    localStorage.removeItem("@FAPERJ:Token");
+    localStorage.removeItem("@FAPERJ:User");
     setTimeout(() => {
       window.location.reload();
-      localStorage.removeItem("@FAPERJ:Token")
-      localStorage.removeItem("@FAPERJ:User")
+      localStorage.removeItem("@FAPERJ:Token");
+      localStorage.removeItem("@FAPERJ:User");
     }, 1000);
   }
 
   return (
-    <AuthContext.Provider value={{ user, UserSignIn, getCurrentUser, Logout }}>
+    <AuthContext.Provider value={{ user, UserSignIn, UserSignUp, getCurrentUser, Logout }}>
       {children}
     </AuthContext.Provider>
   );
