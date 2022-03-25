@@ -36,7 +36,7 @@ export const BodyContainer = styled.main`
   thead th {
     color: #1a202c;
     font-weight: normal;
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: 1rem 2rem;
     text-align: left;
   }
@@ -51,6 +51,7 @@ export const BodyContainer = styled.main`
   tbody td {
     border-top: 1px solid #485564;
     color: #1a202c;
+    font-size: 0.8rem;
     font-weight: normal;
   padding: 1rem 2rem;
 }
