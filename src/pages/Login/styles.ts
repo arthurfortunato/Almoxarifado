@@ -1,20 +1,19 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ContainerStyled = styled.main`
   display: flex;
-  `
-  export const AsideContainer = styled.main`
-  z-index: 100;
+`;
+export const AsideContainer = styled.main`
   width: 100%;
   height: 100vh;
   display: grid;
   grid-template-rows: 1fr 150px;
   background: #901b41;
 
-  @media(max-width: 735px) {
-      display: none
-    }
-`
+  @media (max-width: 735px) {
+    display: none;
+  }
+`;
 
 export const AsideBodyWelcome = styled.aside`
   width: 100%;
@@ -25,28 +24,28 @@ export const AsideBodyWelcome = styled.aside`
   text-align: center;
 
   strong {
-      max-width: 500px;
-      font: 700 4rem "Roboto", sans-serif;
-      color: #f8f8f8;
+    max-width: 500px;
+    font: 700 4rem "Roboto", sans-serif;
+    color: #f8f8f8;
 
-      @media(max-width: 1190px) {
+    @media (max-width: 1190px) {
       transition: 1.8s all;
       font-size: 3rem;
     }
-    }
-    
-    p {
-      max-width: 700px;
-      font: 400 1.3rem "Nunito", sans-serif;
-      color: #f8f8f8;
-      padding: 20px;
+  }
 
-      @media(max-width: 1190px) {
+  p {
+    max-width: 700px;
+    font: 400 1.3rem "Nunito", sans-serif;
+    color: #f8f8f8;
+    padding: 20px;
+
+    @media (max-width: 1190px) {
       transition: 1.8s all;
       font-size: 1rem;
     }
-    }
-`
+  }
+`;
 
 export const AsideBodyLogo = styled.aside`
   width: 100%;
@@ -59,25 +58,25 @@ export const AsideBodyLogo = styled.aside`
     height: 80px;
     padding: 20px;
 
-    @media(max-width: 1190px) {
+    @media (max-width: 1190px) {
       transition: 1.8s all;
       width: 150px;
       height: 50px;
     }
   }
-  
+
   .faperj {
     width: 200px;
     height: 80px;
     padding: 20px;
 
-    @media(max-width: 1190px) {
+    @media (max-width: 1190px) {
       transition: 1.8s all;
       width: 150px;
       height: 50px;
     }
   }
-`
+`;
 
 export const BodyContainerStyled = styled.main`
   width: 100%;
@@ -85,8 +84,8 @@ export const BodyContainerStyled = styled.main`
   display: grid;
   grid-template-rows: 1fr 100px;
   background: #fff;
-  z-index: 100;
-`
+
+`;
 
 export const LoginStyled = styled.div`
   width: 100%;
@@ -102,10 +101,10 @@ export const LoginStyled = styled.div`
       color: #29292e;
       padding-bottom: 20px;
 
-      @media(max-width: 1190px) {
-      transition: 1.8s all;
-      font-size: 1rem;
-    }
+      @media (max-width: 1190px) {
+        transition: 1.8s all;
+        font-size: 1rem;
+      }
     }
     label {
       font: 500 1rem "Nunito", sans-serif;
@@ -113,29 +112,29 @@ export const LoginStyled = styled.div`
       color: #29292e;
     }
   }
-`
+`;
 
 export const SeparatorStyled = styled.div`
-  font-size: 14px;
-  color: #a8a8b3;
+  p {
+    color: #29292e;
+  }
 
-  margin: 32px 0;
+  font-size: 1.1rem;
+  color: gray;
   display: flex;
   align-items: center;
-
   &::before {
     content: "";
     flex: 1;
     height: 1px;
-    background: #a8a8b3 !important;
+    background: gray;
     margin-right: 16px;
   }
-
   &::after {
     content: "";
     flex: 1;
     height: 1px;
-    background: #a8a8b3 !important;
+    background: gray;
     margin-left: 16px;
   }
-`
+`;

@@ -4,11 +4,13 @@ import {
   ContainerStyled,
   BodyContainerStyled,
   LoginStyled,
-  SeparatorStyled
+  SeparatorStyled,
 } from "./styles";
 
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
+import { ModalCreateUser } from "../../components/Modal";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
@@ -71,10 +73,13 @@ export const Login = () => {
 
             <Button type="button" onClick={handleToSignIn}>
               ENTRAR
-            <Toaster position="top-center" reverseOrder={false} />
+              <Toaster position="top-center" reverseOrder={false} />
             </Button>
-            <SeparatorStyled className="separator">OU</SeparatorStyled>
           </form>
+          <SeparatorStyled className="separator">
+            <p>Não tem uma conta?</p>
+            <ModalCreateUser />
+          </SeparatorStyled>
         </LoginStyled>
       </BodyContainerStyled>
     </ContainerStyled>

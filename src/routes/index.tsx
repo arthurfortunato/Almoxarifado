@@ -6,7 +6,6 @@ import EditProducts from "../pages/EditProducts";
 import { Login } from "../pages/Login";
 import { Sidebar } from "../components/Sidebar/Sidebar";
 import { useAuth } from "../hooks/useAuth";
-
 export const Router = () => {
   const { user } = useAuth();
   return (
