@@ -32,7 +32,7 @@ const EditProducts = (product: Partial<IProduct>) => {
   const [currentCode, setCurrentCode] = useState("");
   const [currentSector, setCurrentSector] = useState("");
   const [currentAmount, setCurrentAmount] = useState("");
-
+  
   api
     .get(`product/productId/${localStorage.getItem("idCode")}`)
     .then((response) => {
@@ -41,9 +41,7 @@ const EditProducts = (product: Partial<IProduct>) => {
       setCurrentSector(response.data.sector);
       setCurrentAmount(response.data.amount);
     });
-
-  console.log();
-
+    
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const [sector, setSector] = useState("");
@@ -119,7 +117,7 @@ const EditProducts = (product: Partial<IProduct>) => {
           </Label>
           <Input
             placeholder={currentCode}
-            value={product.code}
+            value={code}
             onChange={(event) => {
               setCode(event.target.value);
             }}
@@ -129,7 +127,7 @@ const EditProducts = (product: Partial<IProduct>) => {
           </Label>
           <Input
             placeholder={currentSector}
-            value={product.sector}
+            value={sector}
             onChange={(event) => {
               setSector(event.target.value);
             }}
@@ -140,7 +138,7 @@ const EditProducts = (product: Partial<IProduct>) => {
           <Input
             type="number"
             placeholder={currentAmount}
-            value={product.amount}
+            value={amount}
             onChange={(event) => {
               setAmount(event.target.value);
             }}

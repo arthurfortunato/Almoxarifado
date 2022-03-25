@@ -4,6 +4,7 @@ import {
   ContainerStyled,
   BodyContainerStyled,
   LoginStyled,
+  SeparatorStyled
 } from "./styles";
 
 import { Input } from "../../components/Input";
@@ -11,6 +12,7 @@ import { Button } from "../../components/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import toast, { Toaster } from "react-hot-toast";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -23,18 +25,18 @@ export const Login = () => {
     try {
       const data = {
         email,
-        password
-      }
+        password,
+      };
       const response = await UserSignIn(data);
 
       if (response.email) {
-        navigate('/product');
+        navigate("/product");
         return;
       }
     } catch (error) {
-     alert("Usuário ou Senha inválidos")
+      toast.error("Usuário ou Senha inválidos");
     }
-  }
+  };
 
   return (
     <ContainerStyled>
@@ -57,17 +59,21 @@ export const Login = () => {
               type="text"
               placeholder="Insira o seu e-mail..."
               value={email}
-              onChange={event => setEmail(event.target.value)}
+              onChange={(event) => setEmail(event.target.value)}
             />
             <label>Senha</label>
-            <Input 
-              type="password" 
+            <Input
+              type="password"
               placeholder="•••••••••••"
               value={password}
-              onChange={event => setPassword(event.target.value)} 
+              onChange={(event) => setPassword(event.target.value)}
             />
 
-            <Button type="button" onClick={handleToSignIn}>ENTRAR</Button>
+            <Button type="button" onClick={handleToSignIn}>
+              ENTRAR
+            <Toaster position="top-center" reverseOrder={false} />
+            </Button>
+            <SeparatorStyled className="separator">OU</SeparatorStyled>
           </form>
         </LoginStyled>
       </BodyContainerStyled>
