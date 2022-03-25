@@ -89,3 +89,14 @@ export const Buttons = styled.div`
     padding-left: 10px;
   }
 `;
+
+export const TextareaStyled = styled.textarea`
+    border-radius: 5px;
+    color: #29292e;
+    font-size: 1.2rem;
+    font-weight: 400;
+    border: 1px solid gray;
+    width: 100%;
+    padding:5px 10px;
+    outline: 0;
+`;

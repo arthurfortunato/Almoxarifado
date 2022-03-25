@@ -5,6 +5,7 @@ import {
   InputContainer,
   Label,
   Buttons,
+  TextareaStyled
 } from "./styles";
 
 import { Button } from "../../components/Button";
@@ -32,6 +33,7 @@ const EditProducts = (product: Partial<IProduct>) => {
   const [currentCode, setCurrentCode] = useState("");
   const [currentSector, setCurrentSector] = useState("");
   const [currentAmount, setCurrentAmount] = useState("");
+  const [currentDescription, setCurrentDescription] = useState("");
   
   api
     .get(`product/productId/${localStorage.getItem("idCode")}`)
@@ -40,12 +42,14 @@ const EditProducts = (product: Partial<IProduct>) => {
       setCurrentCode(response.data.code);
       setCurrentSector(response.data.sector);
       setCurrentAmount(response.data.amount);
+      setCurrentDescription(response.data.description);
     });
     
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const [sector, setSector] = useState("");
   const [amount, setAmount] = useState("");
+  const [description, setDescription] = useState("");
 
   const navigate = useNavigate();
 
@@ -53,19 +57,21 @@ const EditProducts = (product: Partial<IProduct>) => {
     name: string,
     code: string,
     sector: string,
-    amount: string
+    amount: string,
+    description: string
   ) => {
     await api.put(`/product/updated/${localStorage.getItem("idCode")}`, {
       name: name,
       code: code,
       sector: sector,
       amount: amount,
+      description: description
     });
   };
 
   const saveProduct = async () => {
     try {
-      await getProducts(name, code, sector, amount).then(() => {
+      await getProducts(name, code, sector, amount, description).then(() => {
         navigate("/product");
       });
     } catch (error) {
@@ -141,6 +147,16 @@ const EditProducts = (product: Partial<IProduct>) => {
             value={amount}
             onChange={(event) => {
               setAmount(event.target.value);
+            }}
+          />
+          <Label>
+            Descrição<p>*</p>
+          </Label>
+          <TextareaStyled
+            placeholder={currentDescription}
+            value={description}
+            onChange={(event) => {
+              setDescription(event.target.value);
             }}
           />
         </InputContainer>
